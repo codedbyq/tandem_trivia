@@ -4,7 +4,7 @@ class Game {
     constructor(questionList) {
         this.questionList = questionList;
         this.questions = [];
-
+        this.round = 0
         this.generateQuestions();
     }
 

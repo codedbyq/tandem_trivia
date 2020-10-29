@@ -101,3 +101,11 @@ body {
     border-radius: 20px;
     border: 1px solid red;
 }
+
+.next_question {
+    display: inline-flex;
+    justify-content: flex-end;
+    height: 5%;
+    width: 100%;
+    border: 1px solid red;
+}

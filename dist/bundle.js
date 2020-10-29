@@ -121,6 +121,7 @@ var Game = /*#__PURE__*/function () {
 
     this.questionList = questionList;
     this.questions = [];
+    this.round = 0;
     this.generateQuestions();
   } // generate 10 instances of the Question class with a random question for each
 
@@ -183,13 +184,16 @@ var Question = /*#__PURE__*/function () {
     this.question = props.question;
     this.incorrect = props.incorrect;
     this.correct = props.correct;
-  }
+  } // Find the h1 tag with the id question and update the text to the current question
+
 
   _createClass(Question, [{
     key: "renderQuestion",
     value: function renderQuestion() {
       document.getElementById('question').innerText = this.question;
-    }
+    } // Find the h1 tag with the id question and replace the current question 
+    // with default text
+
   }, {
     key: "clearQuestion",
     value: function clearQuestion() {
