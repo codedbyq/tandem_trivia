@@ -24,7 +24,25 @@ body {
     align-items: center;
     height: 70%;
     width: 70%;
+    margin: 20px;
     padding: 20px;
+    border: 1px solid red;
+}
+
+.stats {
+    display: inline-flex;
+    justify-content: space-between;
+    height: 8%;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
     border: 1px solid red;
 }
 
@@ -32,7 +50,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35%;
+    height: 15%;
     width: 100%;
     border: 1px solid red;
 }
