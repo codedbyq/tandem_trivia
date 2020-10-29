@@ -33,3 +33,5 @@ class Game {
 }
 
 export default Game;
+
+// define win when index is greater than 10

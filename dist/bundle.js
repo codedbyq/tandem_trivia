@@ -157,7 +157,7 @@ var Game = /*#__PURE__*/function () {
   return Game;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Game);
+/* harmony default export */ __webpack_exports__["default"] = (Game); // define win when index is greater than 10
 
 /***/ }),
 
