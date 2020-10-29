@@ -1,5 +1,9 @@
-import * as questionList from '../Apprentice_TandemFor400_Data.json'
+import questionList from '../Apprentice_TandemFor400_Data.json';
+import Game from './game';
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log('webpack is running')
+
+    // ! Testing 
+    window.game = new Game(questionList);
+    window.questionList = questionList;
 })

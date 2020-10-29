@@ -97,6 +97,93 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 
 /***/ }),
 
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _question__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./question */ "./src/question.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Game = /*#__PURE__*/function () {
+  function Game(questionList) {
+    _classCallCheck(this, Game);
+
+    this.questionList = questionList;
+    this.questions = [];
+    this.generateQuestions();
+  } // generate 10 instances of the Question class with a random question for each
+
+
+  _createClass(Game, [{
+    key: "generateQuestions",
+    value: function generateQuestions() {
+      var randoms = this.randomQuestions();
+
+      for (var i = 0; i < randoms.length; i++) {
+        var question = new _question__WEBPACK_IMPORTED_MODULE_0__["default"](randoms[i]);
+        this.questions.push(question);
+      }
+    }
+  }, {
+    key: "randomQuestions",
+    // return an array of 10 random questions
+    value: function randomQuestions() {
+      var questions = [];
+
+      while (questions.length < 10) {
+        var idx = Math.floor(Math.random() * this.questionList.length);
+        var question = this.questionList[idx];
+
+        if (!questions.includes(question)) {
+          questions.push(question);
+        }
+      }
+
+      return questions;
+    }
+  }]);
+
+  return Game;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Game);
+
+/***/ }),
+
+/***/ "./src/question.js":
+/*!*************************!*\
+  !*** ./src/question.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Question = function Question(props) {
+  _classCallCheck(this, Question);
+
+  this.question = props.question;
+  this.incorrect = props.incorrect;
+  this.answer = props.answer;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Question);
+
+/***/ }),
+
 /***/ "./src/tandem_trivia.js":
 /*!******************************!*\
   !*** ./src/tandem_trivia.js ***!
@@ -108,9 +195,13 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Apprentice_TandemFor400_Data.json */ "./Apprentice_TandemFor400_Data.json");
 var _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../Apprentice_TandemFor400_Data.json */ "./Apprentice_TandemFor400_Data.json", 1);
+/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./src/game.js");
+
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('webpack is running');
+  // ! Testing 
+  window.game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
+  window.questionList = _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__;
 });
 
 /***/ })
