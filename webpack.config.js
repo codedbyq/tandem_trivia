@@ -4,7 +4,7 @@ module.exports = {
   context: __dirname,
   entry: "./src/tandem_trivia.js",
   output: {
-    filename: "./dist/bundle.js",
+    filename: "bundle.js",
   },
   module: {
     rules: [
