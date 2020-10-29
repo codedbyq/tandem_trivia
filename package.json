@@ -7,16 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codedbyq/tandem_trivia"
-  },
-  "author": "Marquis Bentley",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/codedbyq/tanden_trivia/issues"
-  },
-  "homepage": "https://github.com/codedbyq/tandem_trivia#readme",
   "dependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
