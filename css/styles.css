@@ -15,7 +15,13 @@ body {
     font-family: 'Montserrat', sans-serif;
     height: 100%;
     width: 100%;
-    background-color: grey;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);;
+}
+
+#main_title {
+    font-size: 36px;
+    color: white;
+    text-shadow: 6px 6px rgba(28, 35, 52, 0.529);
 }
 
 .trivia {
@@ -30,9 +36,9 @@ body {
     border-radius: 20px;
     background-color: white;
     border: 1px solid red;
-    -webkit-box-shadow: 13px 13px 29px 3px rgba(30,24,45,1);
-    -moz-box-shadow: 13px 13px 29px 3px rgba(30,24,45,1);
-    box-shadow: 13px 13px 29px 3px rgba(30,24,45,1);
+    -webkit-box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
+    -moz-box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
+    box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
 }
 
 .stats {
