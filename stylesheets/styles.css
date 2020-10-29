@@ -2,10 +2,24 @@ h1 {
     font-family: 'Bungee', cursive;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+.trivia {
+    display: flex;
+    height: 70%;
+    width: 70%;
+    border: 1px solid red;
 }
