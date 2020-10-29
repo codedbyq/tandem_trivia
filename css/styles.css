@@ -95,7 +95,7 @@ body {
 }
 
 #choice {
-    display: flexbox;
+    display: flex;
     height: 40%;
     width: 47%;
     border-radius: 20px;
