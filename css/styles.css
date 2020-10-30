@@ -94,7 +94,7 @@ body {
     width: 100%;
 }
 
-#choice {
+.choice {
     display: flex;
     height: 40%;
     width: 47%;
