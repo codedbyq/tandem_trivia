@@ -232,6 +232,13 @@ var Question = /*#__PURE__*/function () {
       }
 
       return choices;
+    } // call this function to render the question and choices together
+
+  }, {
+    key: "render",
+    value: function render() {
+      this.renderQuestion();
+      this.renderChoices();
     } // Find the h1 tag with the id question and replace the current question 
     // with default text
 
@@ -239,6 +246,25 @@ var Question = /*#__PURE__*/function () {
     key: "clearQuestion",
     value: function clearQuestion() {
       document.getElementById('question').innerText = 'Are you ready?';
+    } // Find all the choices divs and replace the current choice with an 
+    // empty string
+
+  }, {
+    key: "clearChoices",
+    value: function clearChoices() {
+      var choices = document.querySelectorAll('.choice');
+
+      for (var i = 0; i < choices.length; i++) {
+        var choice = choices[i];
+        choice.innerHTML = '';
+      }
+    } // call this function to remove the question and choices together from the game
+
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.clearQuestion();
+      this.clearChoices();
     }
   }]);
 

@@ -37,10 +37,32 @@ class Question {
         return choices;
     }
 
+    // call this function to render the question and choices together
+    render() {
+        this.renderQuestion();
+        this.renderChoices();
+    }
+
     // Find the h1 tag with the id question and replace the current question 
     // with default text
     clearQuestion() {
         document.getElementById('question').innerText = 'Are you ready?'
+    }
+
+    // Find all the choices divs and replace the current choice with an 
+    // empty string
+    clearChoices() {
+        const choices = document.querySelectorAll('.choice');
+        for (let i = 0; i < choices.length; i++) {
+            const choice = choices[i];
+            choice.innerHTML = '';
+        }
+    }
+
+    // call this function to remove the question and choices together from the game
+    clear() {
+        this.clearQuestion();
+        this.clearChoices();
     }
     
 }
