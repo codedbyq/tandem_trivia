@@ -59,17 +59,16 @@ body {
 
 .remaining {
     justify-content: flex-start;
+    font-size: 18px;
 }
 
 .multiplier {
     font-size: 20px;
-    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .score {
     justify-content: flex-end;
+    font-size: 18px;
 }
 
 .timer_wrap {
@@ -92,7 +91,7 @@ body {
     height: 40px;
     width: 40px;
     border-radius: 100px;
-    border: 1px solid black;
+    border: 1px solid rgba(28, 35, 52, 0.529);
     background-color: white;
 }
 
@@ -139,7 +138,7 @@ body {
     width: 100%;
     background-color: white;
     border-radius: 17px;
-    border: 1px solid black;
+    border: 1px solid rgba(28, 35, 52, 0.529);
 }
 
 .next_question {
