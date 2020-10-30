@@ -15,7 +15,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
 
 #main_title {
@@ -35,7 +35,6 @@ body {
     padding: 20px;
     border-radius: 20px;
     background-color: white;
-    border: 1px solid red;
     -webkit-box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
     -moz-box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
     box-shadow: 13px 13px 29px 3px rgb(28, 35, 52);
@@ -53,11 +52,17 @@ body {
     justify-content: center;
     align-items: center;
     width: 33%;
-    border: 1px solid red;
 }
 
 .remaining {
     justify-content: flex-start;
+}
+
+.multiplier {
+    font-size: 20px;
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .score {
@@ -96,7 +101,6 @@ body {
     font-size: 18px;
     height: 15%;
     width: 100%;
-    border: 1px solid red;
 }
 
 #multiple_choice {
