@@ -203,11 +203,19 @@ var Question = /*#__PURE__*/function () {
     key: "renderQuestion",
     value: function renderQuestion() {
       document.getElementById('question').innerText = this.question;
-    }
+    } // Grab the 4 choice divs and attach a random choice for the user to choose from
+
   }, {
     key: "renderChoices",
     value: function renderChoices() {
-      var choices = document.querySelectorAll('.choice');
+      var divs = document.querySelectorAll('.choice');
+      var choices = this.shuffleChoices();
+
+      for (var i = 0; i < divs.length; i++) {
+        var div = divs[i];
+        var choice = choices[i];
+        div.innerHTML = choice;
+      }
     } // combine the incorrect choices and the correct choice and return with a 
     // shuffled order
 

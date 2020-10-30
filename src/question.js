@@ -10,9 +10,16 @@ class Question {
         document.getElementById('question').innerText = this.question
     }
 
+    // Grab the 4 choice divs and attach a random choice for the user to choose from
     renderChoices() {
-        const choices = document.querySelectorAll('.choice');
-        
+        const divs = document.querySelectorAll('.choice');
+        const choices = this.shuffleChoices();
+
+        for (let i = 0; i < divs.length; i++) {
+            const div = divs[i];
+            const choice = choices[i];
+            div.innerHTML = choice;
+        }
     }
 
     // combine the incorrect choices and the correct choice and return with a 
