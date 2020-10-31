@@ -121,8 +121,11 @@ var Game = /*#__PURE__*/function () {
 
     this.questionList = questionList;
     this.questions = [];
-    this.round = 0;
     this.generateQuestions();
+    this.round = 0;
+    this.score = 0;
+    this.multiplier = 1;
+    this.currentQuestion = this.questions[this.round];
   } // generate 10 instances of the Question class with a random question for each
 
 
@@ -152,6 +155,19 @@ var Game = /*#__PURE__*/function () {
       }
 
       return questions;
+    }
+  }, {
+    key: "renderScore",
+    // display the user's score
+    value: function renderScore() {
+      var score = document.getElementById('score');
+      score.innerHTML = "".concat(this.score);
+    } // game is over once all 10 questions have been answered
+
+  }, {
+    key: "gameOver",
+    value: function gameOver() {
+      return this.round >= 10;
     }
   }]);
 
