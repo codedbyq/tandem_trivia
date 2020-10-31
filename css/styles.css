@@ -142,6 +142,18 @@ body {
     border: 1px solid rgba(28, 35, 52, 0.529);
 }
 
+.choice:hover {
+    background-color: rgb(242, 242, 242);
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
 .next_question {
     display: inline-flex;
     justify-content: flex-end;

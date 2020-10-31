@@ -17,8 +17,9 @@ class Question {
 
         for (let i = 0; i < divs.length; i++) {
             const div = divs[i];
-            const choice = choices[i];
-            div.innerHTML = choice;
+            const choice = document.createElement('p');
+            choice.innerText = choices[i];
+            div.appendChild(choice);
         }
     }
 

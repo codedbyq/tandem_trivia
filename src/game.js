@@ -83,20 +83,53 @@ class Game {
     // select choice
     selectChoice(e) {
         e.preventDefault();
-        this.userGuess = e.currentTarget.innerHTML;
+        this.userGuess = e.currentTarget;
         this.timer.stop();
         this.updateGame();
     }
     
-    //
+    // 
     updateGame() {
         const answer = this.currentQuestion.correct;
-        console.log(this.userGuess === answer);
+        const guess = this.userGuess.firstChild.innerText;
+        // if (answer === guess) {
+        //     console.
+        // } else {
+
+        // }
+        this.renderCorrectChoice();
     }
+
+    
 
     // game is over once all 10 questions have been answered
     gameOver() {
         return this.round >= 10;
+    }
+
+    // change the font color of the correct answer to green and if applicable 
+    // change the color of the incorrect guess to red
+    renderCorrectChoice() {
+        const choices = document.querySelectorAll('.choice');
+        let guess = this.userGuess.firstChild;
+        let answer = null;
+        
+        for (let i = 0; i < choices.length; i++) {
+            const choice = choices[i].firstChild;
+            if (choice.innerText === this.currentQuestion.correct) {
+                answer = choice;
+                break;
+            }
+        }
+
+        if (answer.innerText === guess.innerText) {
+            guess.classList.add('correct');
+        } else {
+            answer.classList.add('correct');
+            guess.classList.add('incorrect');
+        }
+        console.log(answer)
+        console.log(guess)
     }
 }
 

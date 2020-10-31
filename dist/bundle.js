@@ -211,22 +211,55 @@ var Game = /*#__PURE__*/function () {
     key: "selectChoice",
     value: function selectChoice(e) {
       e.preventDefault();
-      this.userGuess = e.currentTarget.innerHTML;
+      this.userGuess = e.currentTarget;
       this.timer.stop();
       this.updateGame();
-    } //
+    } // 
 
   }, {
     key: "updateGame",
     value: function updateGame() {
       var answer = this.currentQuestion.correct;
-      console.log(this.userGuess === answer);
+      var guess = this.userGuess.firstChild.innerText; // if (answer === guess) {
+      //     console.
+      // } else {
+      // }
+
+      this.renderCorrectChoice();
     } // game is over once all 10 questions have been answered
 
   }, {
     key: "gameOver",
     value: function gameOver() {
       return this.round >= 10;
+    } // change the font color of the correct answer to green and if applicable 
+    // change the color of the incorrect guess to red
+
+  }, {
+    key: "renderCorrectChoice",
+    value: function renderCorrectChoice() {
+      var choices = document.querySelectorAll('.choice');
+      var guess = this.userGuess.firstChild;
+      var answer = null;
+
+      for (var i = 0; i < choices.length; i++) {
+        var choice = choices[i].firstChild;
+
+        if (choice.innerText === this.currentQuestion.correct) {
+          answer = choice;
+          break;
+        }
+      }
+
+      if (answer.innerText === guess.innerText) {
+        guess.classList.add('correct');
+      } else {
+        answer.classList.add('correct');
+        guess.classList.add('incorrect');
+      }
+
+      console.log(answer);
+      console.log(guess);
     }
   }]);
 
@@ -288,8 +321,9 @@ var Question = /*#__PURE__*/function () {
 
       for (var i = 0; i < divs.length; i++) {
         var div = divs[i];
-        var choice = choices[i];
-        div.innerHTML = choice;
+        var choice = document.createElement('p');
+        choice.innerText = choices[i];
+        div.appendChild(choice);
       }
     } // combine the incorrect choices and the correct choice and return with a 
     // shuffled order
