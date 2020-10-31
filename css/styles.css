@@ -47,11 +47,22 @@ body {
     width: 100%;
 }
 
+.stats > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat_label {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
 .stat {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 33%;
     background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
