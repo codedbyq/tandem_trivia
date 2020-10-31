@@ -144,14 +144,17 @@ body {
 
 .choice:hover {
     background-color: rgb(242, 242, 242);
+    font-size: 21px;
 }
 
 .correct {
     color: green;
+    cursor: pointer;
 }
 
 .incorrect {
     color: red;
+    cursor: pointer;
 }
 
 .next_question {
