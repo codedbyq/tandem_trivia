@@ -166,6 +166,7 @@ class Game {
             nextQuestion.classList.add('incorrect');
         }
 
+        nextQuestion.addEventListener('click', (e) => console.log(e));
         div.appendChild(nextQuestion);
     }
 }

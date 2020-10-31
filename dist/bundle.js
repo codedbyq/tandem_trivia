@@ -304,6 +304,9 @@ var Game = /*#__PURE__*/function () {
         nextQuestion.classList.add('incorrect');
       }
 
+      nextQuestion.addEventListener('click', function (e) {
+        return console.log(e);
+      });
       div.appendChild(nextQuestion);
     }
   }]);
