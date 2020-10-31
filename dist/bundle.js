@@ -124,34 +124,17 @@ var Game = /*#__PURE__*/function () {
     this.questionList = questionList;
     this.questions = [];
     this.generateQuestions();
-    this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, function () {
-      return console.log('callback');
-    });
+    this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.updateGame);
     this.round = 0;
     this.score = 0;
     this.multiplier = 1;
     this.currentQuestion = this.questions[this.round];
-  } // start the game and render the first question
+    this.userGuess = '';
+  } // generate 10 instances of the Question class with a random question for each
 
 
   _createClass(Game, [{
-    key: "play",
-    value: function play() {
-      this.addChoiceListener();
-      this.startTimer();
-      this.renderStats();
-    }
-  }, {
-    key: "startTimer",
-    // append the timer to the html and start counting down
-    value: function startTimer() {
-      var timer = document.querySelector('.timer');
-      timer.innerHTML = this.timer.time;
-      this.timer.start();
-    }
-  }, {
     key: "generateQuestions",
-    // generate 10 instances of the Question class with a random question for each
     value: function generateQuestions() {
       var randoms = this.randomQuestions();
 
@@ -178,6 +161,35 @@ var Game = /*#__PURE__*/function () {
       return questions;
     }
   }, {
+    key: "play",
+    // start the game and render the first question
+    value: function play() {
+      this.addChoiceListener();
+      this.currentQuestion.render();
+      this.startTimer();
+      this.renderStats();
+    }
+  }, {
+    key: "addChoiceListener",
+    // add an event listener to each of the choices for a given question, when an 
+    // answer is clicked by the user call updateGame to see if it's correct 
+    value: function addChoiceListener() {
+      var _this = this;
+
+      var choices = document.querySelectorAll('.choice');
+      choices.forEach(function (choice) {
+        return choice.addEventListener('click', _this.updateGame);
+      });
+    } // append the timer to the html and start counting down
+
+  }, {
+    key: "startTimer",
+    value: function startTimer() {
+      var timer = document.querySelector('.timer');
+      timer.innerHTML = this.timer.time;
+      this.timer.start();
+    }
+  }, {
     key: "renderStats",
     // display the game stats
     value: function renderStats() {
@@ -190,6 +202,12 @@ var Game = /*#__PURE__*/function () {
 
       var multiplier = document.getElementById('multiplier');
       multiplier.innerHTML = "".concat(this.multiplier, "x");
+    } //
+
+  }, {
+    key: "updateGame",
+    value: function updateGame() {
+      console.log('update game');
     } // game is over once all 10 questions have been answered
 
   }, {

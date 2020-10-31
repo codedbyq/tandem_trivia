@@ -6,28 +6,16 @@ class Game {
         this.questionList = questionList;
         this.questions = [];
         this.generateQuestions();
-
-        this.timer = new Timer(10, () => console.log('callback'));
+        
+        this.timer = new Timer(10, this.updateGame);
         this.round = 0;
         this.score = 0;
         this.multiplier = 1;
+        
         this.currentQuestion = this.questions[this.round];
+        this.userGuess = '';
     }
-
-    // start the game and render the first question
-    play() {
-        this.addChoiceListener();
-        this.startTimer();
-        this.renderStats();
-    };
-
-    // append the timer to the html and start counting down
-    startTimer() {
-        const timer = document.querySelector('.timer');
-        timer.innerHTML = this.timer.time;
-        this.timer.start();
-    };
-
+    
     // generate 10 instances of the Question class with a random question for each
     generateQuestions() {
         const randoms = this.randomQuestions();
@@ -51,6 +39,28 @@ class Game {
         return questions;
     };
 
+    // start the game and render the first question
+    play() {
+        this.addChoiceListener();
+        this.currentQuestion.render();
+        this.startTimer();
+        this.renderStats();
+    };
+    
+    // add an event listener to each of the choices for a given question, when an 
+    // answer is clicked by the user call updateGame to see if it's correct 
+    addChoiceListener() {
+        const choices = document.querySelectorAll('.choice');
+        choices.forEach(choice => choice.addEventListener('click', this.updateGame))
+    }
+
+    // append the timer to the html and start counting down
+    startTimer() {
+        const timer = document.querySelector('.timer');
+        timer.innerHTML = this.timer.time;
+        this.timer.start();
+    };
+    
     // display the game stats
     renderStats() {
         // score
@@ -64,6 +74,11 @@ class Game {
         // multiplier
         const multiplier = document.getElementById('multiplier');
         multiplier.innerHTML = `${this.multiplier}x`;
+    }
+
+    //
+    updateGame() {
+        console.log('update game')
     }
 
     // game is over once all 10 questions have been answered
