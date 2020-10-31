@@ -157,7 +157,7 @@ body {
 .next_question {
     display: inline-flex;
     justify-content: flex-end;
+    align-items: center;
     height: 5%;
     width: 100%;
-    border: 1px solid red;
 }
