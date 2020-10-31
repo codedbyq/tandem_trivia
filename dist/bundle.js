@@ -133,6 +133,7 @@ var Game = /*#__PURE__*/function () {
 
     this.updateGame = this.updateGame.bind(this);
     this.selectChoice = this.selectChoice.bind(this);
+    this.nextRound = this.nextRound.bind(this);
   } // generate 10 instances of the Question class with a random question for each
 
 
@@ -246,7 +247,7 @@ var Game = /*#__PURE__*/function () {
 
       this.renderStats();
       this.renderCorrectChoice();
-      this.nextQuestion();
+      this.nextQuestionPrompt();
     } // game is over once all 10 questions have been answered
 
   }, {
@@ -291,8 +292,8 @@ var Game = /*#__PURE__*/function () {
       console.log(guess);
     }
   }, {
-    key: "nextQuestion",
-    value: function nextQuestion() {
+    key: "nextQuestionPrompt",
+    value: function nextQuestionPrompt() {
       var div = document.querySelector('.next_question');
       var nextQuestion = document.createElement('h1');
 
@@ -304,10 +305,30 @@ var Game = /*#__PURE__*/function () {
         nextQuestion.classList.add('incorrect');
       }
 
-      nextQuestion.addEventListener('click', function (e) {
-        return console.log(e);
-      });
+      nextQuestion.addEventListener('click', this.nextRound);
       div.appendChild(nextQuestion);
+    }
+  }, {
+    key: "clearNextQuestionPromt",
+    value: function clearNextQuestionPromt() {
+      var div = document.querySelector('.next_question');
+      div.innerHTML = '';
+    } // clear the previous round and start a new one
+
+  }, {
+    key: "nextRound",
+    value: function nextRound() {
+      // housekeeping - clear the board and increase round
+      this.currentQuestion.clear();
+      this.clearNextQuestionPromt();
+      this.userGuess = '';
+      this.round += 1; // create new instances, render new question and choices, start the timer
+
+      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.updateGame);
+      this.currentQuestion = this.questions[this.round];
+      this.currentQuestion.render();
+      this.addChoiceListener();
+      this.timer.start();
     }
   }]);
 

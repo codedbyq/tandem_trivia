@@ -18,6 +18,7 @@ class Game {
         // bind functions
         this.updateGame = this.updateGame.bind(this);
         this.selectChoice = this.selectChoice.bind(this);
+        this.nextRound = this.nextRound.bind(this);
     }
     
     // generate 10 instances of the Question class with a random question for each
@@ -111,7 +112,7 @@ class Game {
 
         this.renderStats();
         this.renderCorrectChoice();
-        this.nextQuestion();
+        this.nextQuestionPrompt();
     }
 
     // game is over once all 10 questions have been answered
@@ -153,7 +154,7 @@ class Game {
     }
 
 
-    nextQuestion() {
+    nextQuestionPrompt() {
         const div = document.querySelector('.next_question');
         const nextQuestion = document.createElement('h1');
 
@@ -166,8 +167,29 @@ class Game {
             nextQuestion.classList.add('incorrect');
         }
 
-        nextQuestion.addEventListener('click', (e) => console.log(e));
+        nextQuestion.addEventListener('click', this.nextRound);
         div.appendChild(nextQuestion);
+    }
+
+    clearNextQuestionPromt() {
+        const div = document.querySelector('.next_question');
+        div.innerHTML = '';
+    }
+
+    // clear the previous round and start a new one
+    nextRound() {
+        // housekeeping - clear the board and increase round
+        this.currentQuestion.clear();
+        this.clearNextQuestionPromt();
+        this.userGuess = '';
+        this.round += 1;
+
+        // create new instances, render new question and choices, start the timer
+        this.timer = new Timer(10, this.updateGame);
+        this.currentQuestion = this.questions[this.round];
+        this.currentQuestion.render();
+        this.addChoiceListener();
+        this.timer.start();
     }
 }
 
