@@ -129,7 +129,10 @@ var Game = /*#__PURE__*/function () {
     this.score = 0;
     this.multiplier = 1;
     this.currentQuestion = this.questions[this.round];
-    this.userGuess = '';
+    this.userGuess = ''; // bind functions
+
+    this.updateGame = this.updateGame.bind(this);
+    this.selectChoice = this.selectChoice.bind(this);
   } // generate 10 instances of the Question class with a random question for each
 
 
@@ -178,7 +181,7 @@ var Game = /*#__PURE__*/function () {
 
       var choices = document.querySelectorAll('.choice');
       choices.forEach(function (choice) {
-        return choice.addEventListener('click', _this.updateGame);
+        return choice.addEventListener('click', _this.selectChoice);
       });
     } // append the timer to the html and start counting down
 
@@ -202,12 +205,22 @@ var Game = /*#__PURE__*/function () {
 
       var multiplier = document.getElementById('multiplier');
       multiplier.innerHTML = "".concat(this.multiplier, "x");
+    } // select choice
+
+  }, {
+    key: "selectChoice",
+    value: function selectChoice(e) {
+      e.preventDefault();
+      this.userGuess = e.currentTarget.innerHTML;
+      this.timer.stop();
+      this.updateGame();
     } //
 
   }, {
     key: "updateGame",
     value: function updateGame() {
-      console.log('update game');
+      var answer = this.currentQuestion.correct;
+      console.log(this.userGuess === answer);
     } // game is over once all 10 questions have been answered
 
   }, {

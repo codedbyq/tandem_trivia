@@ -14,6 +14,10 @@ class Game {
         
         this.currentQuestion = this.questions[this.round];
         this.userGuess = '';
+
+        // bind functions
+        this.updateGame = this.updateGame.bind(this);
+        this.selectChoice = this.selectChoice.bind(this);
     }
     
     // generate 10 instances of the Question class with a random question for each
@@ -51,7 +55,7 @@ class Game {
     // answer is clicked by the user call updateGame to see if it's correct 
     addChoiceListener() {
         const choices = document.querySelectorAll('.choice');
-        choices.forEach(choice => choice.addEventListener('click', this.updateGame))
+        choices.forEach(choice => choice.addEventListener('click', this.selectChoice))
     }
 
     // append the timer to the html and start counting down
@@ -76,9 +80,18 @@ class Game {
         multiplier.innerHTML = `${this.multiplier}x`;
     }
 
+    // select choice
+    selectChoice(e) {
+        e.preventDefault();
+        this.userGuess = e.currentTarget.innerHTML;
+        this.timer.stop();
+        this.updateGame();
+    }
+    
     //
     updateGame() {
-        console.log('update game')
+        const answer = this.currentQuestion.correct;
+        console.log(this.userGuess === answer);
     }
 
     // game is over once all 10 questions have been answered
