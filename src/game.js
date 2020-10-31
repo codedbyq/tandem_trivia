@@ -114,8 +114,6 @@ class Game {
         this.nextQuestion();
     }
 
-    
-
     // game is over once all 10 questions have been answered
     gameOver() {
         return this.round >= 10;

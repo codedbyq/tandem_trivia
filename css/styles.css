@@ -147,6 +147,10 @@ body {
     font-size: 21px;
 }
 
+.choice:active {
+    box-shadow: inset 0px 0px 5px #0a0c12;
+}
+
 .correct {
     color: green;
     cursor: pointer;
