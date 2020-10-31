@@ -43,6 +43,11 @@ class Game {
         return questions;
     };
 
+    setCurrentQuestion() {
+        this.currentQuestion = this.questions[this.round];
+        this.currentAnswer = this.currentQuestion
+    }
+
     // start the game and render the first question
     play() {
         this.addChoiceListener();
@@ -90,6 +95,7 @@ class Game {
     
     // 
     updateGame() {
+        console.log(this.currentQuestion)
         const answer = this.currentQuestion.correct;
         const guess = this.userGuess.firstChild.innerText;
         // if (answer === guess) {
@@ -98,6 +104,7 @@ class Game {
 
         // }
         this.renderCorrectChoice();
+        this.nextQuestion();
     }
 
     
@@ -111,7 +118,7 @@ class Game {
     // change the color of the incorrect guess to red
     renderCorrectChoice() {
         const choices = document.querySelectorAll('.choice');
-        let guess = this.userGuess.firstChild;
+        let guess = this.userGuess ? this.userGuess.firstChild : null;
         let answer = null;
         
         for (let i = 0; i < choices.length; i++) {
@@ -130,6 +137,22 @@ class Game {
         }
         console.log(answer)
         console.log(guess)
+    }
+
+    nextQuestion() {
+        const div = document.querySelector('.next_question');
+        const nextQuestion = document.createElement('h1');
+
+        if (this.userGuess.innerText === this.currentQuestion.correct) {
+            nextQuestion.innerText = "That's correct! Next Question";
+            nextQuestion.classList.add('correct');
+
+        } else {
+            nextQuestion.innerText = 'Incorrect... Next Question';
+            nextQuestion.classList.add('incorrect');
+        }
+
+        div.appendChild(nextQuestion);
     }
 }
 

@@ -164,8 +164,14 @@ var Game = /*#__PURE__*/function () {
       return questions;
     }
   }, {
+    key: "setCurrentQuestion",
+    value: function setCurrentQuestion() {
+      this.currentQuestion = this.questions[this.round];
+      this.currentAnswer = this.currentQuestion;
+    } // start the game and render the first question
+
+  }, {
     key: "play",
-    // start the game and render the first question
     value: function play() {
       this.addChoiceListener();
       this.currentQuestion.render();
@@ -219,6 +225,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "updateGame",
     value: function updateGame() {
+      console.log(this.currentQuestion);
       var answer = this.currentQuestion.correct;
       var guess = this.userGuess.firstChild.innerText; // if (answer === guess) {
       //     console.
@@ -226,6 +233,7 @@ var Game = /*#__PURE__*/function () {
       // }
 
       this.renderCorrectChoice();
+      this.nextQuestion();
     } // game is over once all 10 questions have been answered
 
   }, {
@@ -239,7 +247,7 @@ var Game = /*#__PURE__*/function () {
     key: "renderCorrectChoice",
     value: function renderCorrectChoice() {
       var choices = document.querySelectorAll('.choice');
-      var guess = this.userGuess.firstChild;
+      var guess = this.userGuess ? this.userGuess.firstChild : null;
       var answer = null;
 
       for (var i = 0; i < choices.length; i++) {
@@ -260,6 +268,22 @@ var Game = /*#__PURE__*/function () {
 
       console.log(answer);
       console.log(guess);
+    }
+  }, {
+    key: "nextQuestion",
+    value: function nextQuestion() {
+      var div = document.querySelector('.next_question');
+      var nextQuestion = document.createElement('h1');
+
+      if (this.userGuess.innerText === this.currentQuestion.correct) {
+        nextQuestion.innerText = "That's correct! Next Question";
+        nextQuestion.classList.add('correct');
+      } else {
+        nextQuestion.innerText = 'Incorrect... Next Question';
+        nextQuestion.classList.add('incorrect');
+      }
+
+      div.appendChild(nextQuestion);
     }
   }]);
 
