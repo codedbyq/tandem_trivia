@@ -189,6 +189,16 @@ var Game = /*#__PURE__*/function () {
       choices.forEach(function (choice) {
         return choice.addEventListener('click', _this.selectChoice);
       });
+    }
+  }, {
+    key: "removeChoiceListener",
+    value: function removeChoiceListener() {
+      var _this2 = this;
+
+      var choices = document.querySelectorAll('.choice');
+      choices.forEach(function (choice) {
+        return choice.removeEventListener('click', _this2.selectChoice);
+      });
     } // append the timer to the html and start counting down
 
   }, {
@@ -220,18 +230,21 @@ var Game = /*#__PURE__*/function () {
       this.userGuess = e.currentTarget;
       this.timer.stop();
       this.updateGame();
+      this.removeChoiceListener();
     } // 
 
   }, {
     key: "updateGame",
     value: function updateGame() {
-      console.log(this.currentQuestion);
       var answer = this.currentQuestion.correct;
-      var guess = this.userGuess.firstChild.innerText; // if (answer === guess) {
-      //     console.
-      // } else {
-      // }
+      var guess = this.userGuess.firstChild.innerText;
 
+      if (answer === guess) {
+        var roundScore = parseInt(this.timer.time) * 10 * this.multiplier;
+        this.score += roundScore;
+      }
+
+      this.renderStats();
       this.renderCorrectChoice();
       this.nextQuestion();
     } // game is over once all 10 questions have been answered
@@ -240,6 +253,14 @@ var Game = /*#__PURE__*/function () {
     key: "gameOver",
     value: function gameOver() {
       return this.round >= 10;
+    }
+  }, {
+    key: "timesUp",
+    value: function timesUp() {
+      var div = document.querySelector('.next_question');
+      var timesUp = document.createElement('h1');
+      timesUp.innerText = "Time's Up! Next Question";
+      div.appendChild(timesUp);
     } // change the font color of the correct answer to green and if applicable 
     // change the color of the incorrect guess to red
 

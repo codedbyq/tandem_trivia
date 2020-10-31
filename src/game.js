@@ -63,6 +63,11 @@ class Game {
         choices.forEach(choice => choice.addEventListener('click', this.selectChoice))
     }
 
+    removeChoiceListener() {
+        const choices = document.querySelectorAll('.choice');
+        choices.forEach(choice => choice.removeEventListener('click', this.selectChoice))
+    }
+
     // append the timer to the html and start counting down
     startTimer() {
         const timer = document.querySelector('.timer');
@@ -91,18 +96,20 @@ class Game {
         this.userGuess = e.currentTarget;
         this.timer.stop();
         this.updateGame();
+        this.removeChoiceListener();
     }
     
     // 
     updateGame() {
-        console.log(this.currentQuestion)
         const answer = this.currentQuestion.correct;
         const guess = this.userGuess.firstChild.innerText;
-        // if (answer === guess) {
-        //     console.
-        // } else {
 
-        // }
+        if (answer === guess) {
+            const roundScore = (parseInt(this.timer.time) * 10) * this.multiplier;
+            this.score += roundScore;
+        }
+
+        this.renderStats();
         this.renderCorrectChoice();
         this.nextQuestion();
     }
@@ -112,6 +119,14 @@ class Game {
     // game is over once all 10 questions have been answered
     gameOver() {
         return this.round >= 10;
+    }
+
+    timesUp() {
+        const div = document.querySelector('.next_question');
+        const timesUp = document.createElement('h1');
+
+        timesUp.innerText = "Time's Up! Next Question";
+        div.appendChild(timesUp);
     }
 
     // change the font color of the correct answer to green and if applicable 
@@ -138,6 +153,7 @@ class Game {
         console.log(answer)
         console.log(guess)
     }
+
 
     nextQuestion() {
         const div = document.querySelector('.next_question');
