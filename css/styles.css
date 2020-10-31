@@ -57,16 +57,16 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.remaining {
+#round {
     justify-content: flex-start;
     font-size: 18px;
 }
 
-.multiplier {
+#multiplier {
     font-size: 20px;
 }
 
-.score {
+#score {
     justify-content: flex-end;
     font-size: 18px;
 }

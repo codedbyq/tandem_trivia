@@ -157,11 +157,18 @@ var Game = /*#__PURE__*/function () {
       return questions;
     }
   }, {
-    key: "renderScore",
-    // display the user's score
-    value: function renderScore() {
+    key: "renderStats",
+    // display the game stats
+    value: function renderStats() {
+      // score
       var score = document.getElementById('score');
-      score.innerHTML = "".concat(this.score);
+      score.innerHTML = "".concat(this.score); // round
+
+      var round = document.getElementById('round');
+      round.innerHTML = "".concat(this.round + 1, "/10"); // multiplier
+
+      var multiplier = document.getElementById('multiplier');
+      multiplier.innerHTML = "".concat(this.multiplier, "x");
     } // game is over once all 10 questions have been answered
 
   }, {

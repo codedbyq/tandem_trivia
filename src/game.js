@@ -35,10 +35,19 @@ class Game {
         return questions;
     };
 
-    // display the user's score
-    renderScore() {
-        const score = document.getElementById('score')
-        score.innerHTML = `${this.score}`
+    // display the game stats
+    renderStats() {
+        // score
+        const score = document.getElementById('score');
+        score.innerHTML = `${this.score}`;
+
+        // round
+        const round = document.getElementById('round');
+        round.innerHTML = `${this.round + 1}/10`;
+
+        // multiplier
+        const multiplier = document.getElementById('multiplier');
+        multiplier.innerHTML = `${this.multiplier}x`;
     }
 
     // game is over once all 10 questions have been answered
