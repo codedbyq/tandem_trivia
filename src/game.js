@@ -12,6 +12,21 @@ class Game {
         this.currentQuestion = this.questions[this.round];
     }
 
+    // start the game and render the first question
+    play() {
+        this.addChoiceListener();
+        this.startTimer();
+        this.renderStats();
+    };
+
+    // append the timer to the html and start counting down
+    startTimer() {
+        const timer = document.querySelector('.timer');
+        timer.innerHTML = this.timer.time;
+        container.appendChild(timer);
+        this.timer.start();
+    };
+
     // generate 10 instances of the Question class with a random question for each
     generateQuestions() {
         const randoms = this.randomQuestions();

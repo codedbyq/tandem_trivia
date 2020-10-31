@@ -126,11 +126,28 @@ var Game = /*#__PURE__*/function () {
     this.score = 0;
     this.multiplier = 1;
     this.currentQuestion = this.questions[this.round];
-  } // generate 10 instances of the Question class with a random question for each
+  } // start the game and render the first question
 
 
   _createClass(Game, [{
+    key: "play",
+    value: function play() {
+      this.addChoiceListener();
+      this.startTimer();
+      this.renderStats();
+    }
+  }, {
+    key: "startTimer",
+    // append the timer to the html and start counting down
+    value: function startTimer() {
+      var timer = document.querySelector('.timer');
+      timer.innerHTML = this.timer.time;
+      container.appendChild(timer);
+      this.timer.start();
+    }
+  }, {
     key: "generateQuestions",
+    // generate 10 instances of the Question class with a random question for each
     value: function generateQuestions() {
       var randoms = this.randomQuestions();
 
