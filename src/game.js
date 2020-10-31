@@ -1,4 +1,5 @@
 import Question from './question';
+import Timer from './timer';
 
 class Game {
     constructor(questionList) {
@@ -6,6 +7,7 @@ class Game {
         this.questions = [];
         this.generateQuestions();
 
+        this.timer = new Timer(10, () => console.log('callback'));
         this.round = 0;
         this.score = 0;
         this.multiplier = 1;
@@ -23,7 +25,6 @@ class Game {
     startTimer() {
         const timer = document.querySelector('.timer');
         timer.innerHTML = this.timer.time;
-        container.appendChild(timer);
         this.timer.start();
     };
 

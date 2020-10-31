@@ -18,7 +18,7 @@ class Timer {
             this.callback();
         }
 
-        const timer = document.getElementById('timer');
+        const timer = document.querySelector('.timer');
         timer.innerHTML = this.time;
     }
 
@@ -36,7 +36,7 @@ class Timer {
 
     // stop the timer from rendering in the game
     remove() {
-        const timer = document.getElementById('timer');
+        const timer = document.querySelector('.timer');
         timer.remove();
     }
 }

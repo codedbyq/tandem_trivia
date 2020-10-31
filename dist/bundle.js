@@ -107,11 +107,13 @@ module.exports = JSON.parse("[{\"question\":\"What was Tandem previous name?\",\
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _question__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./question */ "./src/question.js");
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./timer */ "./src/timer.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -122,6 +124,9 @@ var Game = /*#__PURE__*/function () {
     this.questionList = questionList;
     this.questions = [];
     this.generateQuestions();
+    this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, function () {
+      return console.log('callback');
+    });
     this.round = 0;
     this.score = 0;
     this.multiplier = 1;
@@ -142,7 +147,6 @@ var Game = /*#__PURE__*/function () {
     value: function startTimer() {
       var timer = document.querySelector('.timer');
       timer.innerHTML = this.timer.time;
-      container.appendChild(timer);
       this.timer.start();
     }
   }, {
@@ -334,6 +338,78 @@ document.addEventListener("DOMContentLoaded", function () {
   window.game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
   window.questionList = _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__;
 });
+
+/***/ }),
+
+/***/ "./src/timer.js":
+/*!**********************!*\
+  !*** ./src/timer.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Timer = /*#__PURE__*/function () {
+  function Timer(duration, callback) {
+    _classCallCheck(this, Timer);
+
+    this.duration = duration;
+    this.callback = callback;
+    this.interval = null;
+    this.time = this.duration;
+    this.tick = this.tick.bind(this);
+  } // decrement time remaining by 1 sec, if time reaches 0 then trigger the 
+  // given callback. Otherwise, render remaining time in the game
+
+
+  _createClass(Timer, [{
+    key: "tick",
+    value: function tick() {
+      this.time--;
+
+      if (this.time < 1) {
+        this.time = 0;
+        this.stop();
+        this.callback();
+      }
+
+      var timer = document.querySelector('.timer');
+      timer.innerHTML = this.time;
+    } // starts the timer and calls the tick function every 1 second
+
+  }, {
+    key: "start",
+    value: function start() {
+      if (this.interval) clearInterval(this.interval);
+      this.time = this.duration;
+      this.interval = setInterval(this.tick, 1000);
+    } // stop the current timer
+
+  }, {
+    key: "stop",
+    value: function stop() {
+      clearInterval(this.interval);
+    } // stop the timer from rendering in the game
+
+  }, {
+    key: "remove",
+    value: function remove() {
+      var timer = document.querySelector('.timer');
+      timer.remove();
+    }
+  }]);
+
+  return Timer;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Timer);
 
 /***/ })
 
