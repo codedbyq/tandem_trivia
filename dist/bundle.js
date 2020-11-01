@@ -297,9 +297,6 @@ var Game = /*#__PURE__*/function () {
         answer.classList.add('correct');
         guess.classList.add('incorrect');
       }
-
-      console.log(answer);
-      console.log(guess);
     }
   }, {
     key: "nextQuestionPrompt",
@@ -332,9 +329,14 @@ var Game = /*#__PURE__*/function () {
       this.currentQuestion.clear();
       this.clearNextQuestionPromt();
       this.userGuess = '';
-      this.round += 1;
-      this.renderStats(); // create new instances, render new question and choices, start the timer
+      this.round += 1; // increase muliplier on round divisible by 3 
 
+      if (this.round > 0 && this.round % 3 === 0) {
+        this.multiplier++;
+      } // create new instances, render new question and choices, start the timer
+
+
+      this.renderStats();
       this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp);
       this.currentQuestion = this.questions[this.round];
       this.currentQuestion.render();

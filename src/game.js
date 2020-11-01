@@ -159,8 +159,6 @@ class Game {
             answer.classList.add('correct');
             guess.classList.add('incorrect');
         }
-        console.log(answer)
-        console.log(guess)
     }
 
 
@@ -193,9 +191,14 @@ class Game {
         this.clearNextQuestionPromt();
         this.userGuess = '';
         this.round += 1;
-        this.renderStats();
 
+        // increase muliplier on round divisible by 3 
+        if (this.round > 0 && this.round % 3 === 0) {
+            this.multiplier++;
+        }
+        
         // create new instances, render new question and choices, start the timer
+        this.renderStats();
         this.timer = new Timer(10, this.timesUp);
         this.currentQuestion = this.questions[this.round];
         this.currentQuestion.render();
