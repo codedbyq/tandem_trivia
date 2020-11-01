@@ -214,7 +214,16 @@ class Game {
     }
 
     renderFinalScore() {
-        
+        const choices = document.getElementById('multiple_choice');
+        const question = document.getElementById('question');
+        const gameOver = document.getElementById('game_over');
+        const score = document.querySelector('.bold_score');
+
+        choices.classList.add('hidden');
+        gameOver.classList.remove('hidden');
+
+        question.innerText = 'Game Over';
+        score.innerText = this.score;
     }
 
     // generate new questions and reset instance variables
@@ -234,7 +243,7 @@ class Game {
     }
 
     playAgain() {
-        
+
     }
 }
 

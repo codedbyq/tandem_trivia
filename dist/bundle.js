@@ -354,7 +354,16 @@ var Game = /*#__PURE__*/function () {
     }
   }, {
     key: "renderFinalScore",
-    value: function renderFinalScore() {} // generate new questions and reset instance variables
+    value: function renderFinalScore() {
+      var choices = document.getElementById('multiple_choice');
+      var question = document.getElementById('question');
+      var gameOver = document.getElementById('game_over');
+      var score = document.querySelector('.bold_score');
+      choices.classList.add('hidden');
+      gameOver.classList.remove('hidden');
+      question.innerText = 'Game Over';
+      score.innerText = this.score;
+    } // generate new questions and reset instance variables
 
   }, {
     key: "reset",
