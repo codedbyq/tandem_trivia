@@ -4,6 +4,7 @@ import Game from './game';
 document.addEventListener("DOMContentLoaded", () => {
     const game = new Game(questionList);
     const start = document.querySelector('.start');
+    const restart = document.querySelector('.restart');
     
     // then the play button is clicked hide the intro div, then render 
     // and start the game
@@ -15,6 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
         intro.classList.add('hidden');
 
         game.play();
+    });
+    
+    // then the play button is clicked hide the intro div, then render 
+    // and start the game
+    restart.addEventListener('click', () => {
+        const gameOver = document.getElementById('game_over');
+        const choices = document.getElementById('multiple_choice');
+
+        choices.classList.remove('hidden');
+        gameOver.classList.add('hidden');
+
+        game.restart();
     });
 
 

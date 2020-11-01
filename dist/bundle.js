@@ -493,7 +493,8 @@ var _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0___namespace = 
 
 document.addEventListener("DOMContentLoaded", function () {
   var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
-  var start = document.querySelector('.start'); // then the play button is clicked hide the intro div, then render 
+  var start = document.querySelector('.start');
+  var restart = document.querySelector('.restart'); // then the play button is clicked hide the intro div, then render 
   // and start the game
 
   start.addEventListener('click', function () {
@@ -502,6 +503,15 @@ document.addEventListener("DOMContentLoaded", function () {
     choices.classList.remove('hidden');
     intro.classList.add('hidden');
     game.play();
+  }); // then the play button is clicked hide the intro div, then render 
+  // and start the game
+
+  restart.addEventListener('click', function () {
+    var gameOver = document.getElementById('game_over');
+    var choices = document.getElementById('multiple_choice');
+    choices.classList.remove('hidden');
+    gameOver.classList.add('hidden');
+    game.restart();
   }); // ! Testing 
 
   window.game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
