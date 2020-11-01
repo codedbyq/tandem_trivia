@@ -135,7 +135,7 @@ body {
     height: 62%;
 }
 
-#intro.hidden {
+#intro.hidden, #game_over.hidden, #multiple_choice.hidden {
     display: none;
 }
 
@@ -192,10 +192,6 @@ body {
     align-items: center;
     width: 100%;
     font-size: 27px;
-}
-
-#multiple_choice.hidden {
-    display: none;
 }
 
 .top, .bottom {
