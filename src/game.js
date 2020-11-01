@@ -24,11 +24,14 @@ class Game {
     
     // generate 10 instances of the Question class with a random question for each
     generateQuestions() {
+        const questions = []
         const randoms = this.randomQuestions();
         for (let i = 0; i < randoms.length; i++) {
             const question = new Question(randoms[i]);
-            this.questions.push(question);
+            questions.push(question);
         }
+
+        this.questions = questions;
     };
 
     // return an array of 10 random questions
@@ -211,7 +214,28 @@ class Game {
     }
 
     renderFinalScore() {
-        alert(`GAME OVER\n Final Score: ${this.score}pts`)
+        
+    }
+
+    restart() {
+        // get a new set of questions
+        this.generateQuestions();
+
+        // housekeeping - clear the board and reset instance variables
+        this.timer.remove();
+        this.currentQuestion.clear();
+        this.clearNextQuestionPromt();
+        this.userGuess = '';
+        this.round = 0;
+        this.multiplier = 1
+
+        // render new question and choices, start the timer
+        this.timer = new Timer(10, this.timesUp(this));
+        this.currentQuestion = this.questions[this.round];
+        this.currentQuestion.render();
+        this.addChoiceListener();
+        this.renderStats();
+        this.timer.start();
     }
 }
 

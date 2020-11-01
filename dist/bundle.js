@@ -141,12 +141,15 @@ var Game = /*#__PURE__*/function () {
   _createClass(Game, [{
     key: "generateQuestions",
     value: function generateQuestions() {
+      var questions = [];
       var randoms = this.randomQuestions();
 
       for (var i = 0; i < randoms.length; i++) {
         var question = new _question__WEBPACK_IMPORTED_MODULE_0__["default"](randoms[i]);
-        this.questions.push(question);
+        questions.push(question);
       }
+
+      this.questions = questions;
     }
   }, {
     key: "randomQuestions",
@@ -351,8 +354,26 @@ var Game = /*#__PURE__*/function () {
     }
   }, {
     key: "renderFinalScore",
-    value: function renderFinalScore() {
-      alert("GAME OVER\n Final Score: ".concat(this.score, "pts"));
+    value: function renderFinalScore() {}
+  }, {
+    key: "restart",
+    value: function restart() {
+      // get a new set of questions
+      this.generateQuestions(); // housekeeping - clear the board and reset instance variables
+
+      this.timer.remove();
+      this.currentQuestion.clear();
+      this.clearNextQuestionPromt();
+      this.userGuess = '';
+      this.round = 0;
+      this.multiplier = 1; // render new question and choices, start the timer
+
+      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
+      this.currentQuestion = this.questions[this.round];
+      this.currentQuestion.render();
+      this.addChoiceListener();
+      this.renderStats();
+      this.timer.start();
     }
   }]);
 
