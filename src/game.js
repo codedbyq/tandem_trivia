@@ -200,7 +200,7 @@ class Game {
         
         // create new instances, render new question and choices, start the timer
         this.renderStats();
-        this.timer = new Timer(10, this.timesUp);
+        this.timer = new Timer(10, this.timesUp(this));
         this.currentQuestion = this.questions[this.round];
         this.currentQuestion.render();
         this.addChoiceListener();

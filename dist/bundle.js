@@ -338,7 +338,7 @@ var Game = /*#__PURE__*/function () {
 
 
       this.renderStats();
-      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp);
+      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
       this.currentQuestion = this.questions[this.round];
       this.currentQuestion.render();
       this.addChoiceListener();
