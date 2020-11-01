@@ -105,20 +105,22 @@ class Game {
     updateGame() {
         const answer = this.currentQuestion.correct;
         const guess = this.userGuess.firstChild.innerText;
+        const last = this.lastQuestion();
 
         if (answer === guess) {
-            const roundScore = (parseInt(this.timer.time) * 10) * this.multiplier;
+            const roundScore = (this.timer.time * 10) * this.multiplier;
             this.score += roundScore;
         }
 
         this.renderStats();
         this.renderCorrectChoice();
-        this.nextQuestionPrompt();
+        last ? this.renderFinalScore() : this.nextQuestionPrompt();
     }
 
-    // game is over once all 10 questions have been answered
-    gameOver() {
-        return this.round >= 10;
+    // return a boolean representing whether or not the current round is the 
+    // 10th and final question
+    lastQuestion() {
+        return (this.round + 1) >= 10;
     }
 
     // take in the game object to keep context of this, whenever the user runs 
@@ -191,6 +193,7 @@ class Game {
         this.clearNextQuestionPromt();
         this.userGuess = '';
         this.round += 1;
+        this.renderStats();
 
         // create new instances, render new question and choices, start the timer
         this.timer = new Timer(10, this.timesUp);
@@ -198,6 +201,10 @@ class Game {
         this.currentQuestion.render();
         this.addChoiceListener();
         this.timer.start();
+    }
+
+    renderFinalScore() {
+        alert(`GAME OVER\n Final Score: ${this.score}pts`)
     }
 }
 

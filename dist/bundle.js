@@ -240,21 +240,23 @@ var Game = /*#__PURE__*/function () {
     value: function updateGame() {
       var answer = this.currentQuestion.correct;
       var guess = this.userGuess.firstChild.innerText;
+      var last = this.lastQuestion();
 
       if (answer === guess) {
-        var roundScore = parseInt(this.timer.time) * 10 * this.multiplier;
+        var roundScore = this.timer.time * 10 * this.multiplier;
         this.score += roundScore;
       }
 
       this.renderStats();
       this.renderCorrectChoice();
-      this.nextQuestionPrompt();
-    } // game is over once all 10 questions have been answered
+      last ? this.renderFinalScore() : this.nextQuestionPrompt();
+    } // return a boolean representing whether or not the current round is the 
+    // 10th and final question
 
   }, {
-    key: "gameOver",
-    value: function gameOver() {
-      return this.round >= 10;
+    key: "lastQuestion",
+    value: function lastQuestion() {
+      return this.round + 1 >= 10;
     } // take in the game object to keep context of this, whenever the user runs 
     // out of time to answer a question call this function
 
@@ -330,13 +332,19 @@ var Game = /*#__PURE__*/function () {
       this.currentQuestion.clear();
       this.clearNextQuestionPromt();
       this.userGuess = '';
-      this.round += 1; // create new instances, render new question and choices, start the timer
+      this.round += 1;
+      this.renderStats(); // create new instances, render new question and choices, start the timer
 
       this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp);
       this.currentQuestion = this.questions[this.round];
       this.currentQuestion.render();
       this.addChoiceListener();
       this.timer.start();
+    }
+  }, {
+    key: "renderFinalScore",
+    value: function renderFinalScore() {
+      alert("GAME OVER\n Final Score: ".concat(this.score, "pts"));
     }
   }]);
 
