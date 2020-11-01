@@ -18,13 +18,29 @@ body {
     background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
 
+.hidden {
+    display: none;
+}
+
 #main_title {
     font-size: 36px;
     color: white;
     text-shadow: 6px 6px rgba(28, 35, 52, 0.529);
 }
 
-.trivia {
+#game_over {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+
+#trivia {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,7 +133,7 @@ body {
     width: 100%;
 }
 
-#multiple_choice {
+#multiple_choice, #intro {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -125,6 +141,40 @@ body {
     /* flex-wrap: wrap; */
     height: 58%;
     width: 100%;
+}
+
+#intro {
+    height: 60%;
+}
+
+.intro_message {
+    text-align: justify;
+    line-height: 1.2;
+    font-size: 19px;
+    width: 80%;
+}
+
+.start {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 6%;
+    width: 25%;
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);;
+}
+
+.start:hover {
+    background-image: linear-gradient(to right, #5b11ab 0%, #2162d3 100%);;
+}
+
+#multiple_choice.hidden {
+    display: none;
 }
 
 .top, .bottom {
@@ -169,7 +219,7 @@ body {
     font-size: 21px;
 }
 
-.choice:active {
+.choice:active, .start:active {
     box-shadow: inset 0px 0px 5px #0a0c12;
 }
 

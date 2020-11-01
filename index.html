@@ -12,11 +12,11 @@
 <body>
     <h1 id='main_title'>Tandem Trivia</h1>
 
-    <div class="trivia">
+    <div id="trivia">
         <div class="stats">
             <div>
                 <h1 class="stat_label">Round</h1>
-                <div id='round' class="stat">4/10</div>
+                <div id='round' class="stat">1/10</div>
             </div>
             <div>
                 <h1 class="stat_label">Multiplier</h1>
@@ -24,14 +24,46 @@
             </div>
             <div>
                 <h1 class="stat_label">Score</h1>
-                <div id='score' class="stat">23739</div>
+                <div id='score' class="stat">0</div>
             </div>
         </div>
 
         <div class="timer_wrap"><h1 class="timer">10</h1></div>
         <h1 id='question'>Are you ready?</h1>
 
-        <div id="multiple_choice">
+        <!-- before the game render the intro text and a start button -->
+        <div id="intro">
+            <div class="intro_message">
+                Welcome to Tandem Trivia! You will be asked 10 random questions 
+                of varying topics, and you'll be given 10 seconds to answer 
+                each. There is no penalty for answering incorrect so if you 
+                don't know the answer feel free to guess!
+
+                <br><br>
+
+                Whenever you're ready click "Play" below or check out my social 
+                pages with the links below.
+            </div>
+            
+            <div class="start">Play</div>
+
+            <div class="social">
+                <a href="https://www.linkedin.com/in/marquisbentley/">
+                    <img src="https://img.icons8.com/nolan/64/linkedin-circled.png" />
+                </a>
+
+                <a href="https://www.marquisbentley.com">
+                    <img src="https://img.icons8.com/nolan/64/men-age-group-4--v2.png" />
+                </a>
+
+                <a href="https://github.com/codedbyq/tandem_trivia">
+                    <img src="https://img.icons8.com/nolan/64/github.png" />
+                </a>
+            </div>
+        </div>
+
+        <!-- when the game is started render the choices for each question -->
+        <div id="multiple_choice" class="hidden">
             <div class="top">
                 <div class="choice_wrap"><div class="choice"></div></div>
                 <div class="choice_wrap"><div class="choice"></div></div>
@@ -43,6 +75,10 @@
         </div>
 
         <div class="next_question"></div>
+    </div>
+
+    <div id='game_over' class="hidden">
+
     </div>
 
 
