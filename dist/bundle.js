@@ -382,7 +382,10 @@ var Game = /*#__PURE__*/function () {
     }
   }, {
     key: "playAgain",
-    value: function playAgain() {}
+    value: function playAgain() {
+      this.reset();
+      this.play();
+    }
   }]);
 
   return Game;
@@ -540,7 +543,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var choices = document.getElementById('multiple_choice');
     choices.classList.remove('hidden');
     gameOver.classList.add('hidden');
-    game.restart();
+    game.playAgain();
   }); // ! Testing 
 
   window.game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);

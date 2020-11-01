@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         choices.classList.remove('hidden');
         gameOver.classList.add('hidden');
 
-        game.restart();
+        game.playAgain();
     });
 
 

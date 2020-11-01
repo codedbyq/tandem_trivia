@@ -243,7 +243,8 @@ class Game {
     }
 
     playAgain() {
-
+        this.reset();
+        this.play();
     }
 }
 
