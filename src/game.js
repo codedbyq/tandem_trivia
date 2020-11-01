@@ -7,7 +7,7 @@ class Game {
         this.questions = [];
         this.generateQuestions();
         
-        this.timer = new Timer(10, this.updateGame);
+        this.timer = new Timer(10, this.timesUp(this));
         this.round = 0;
         this.score = 0;
         this.multiplier = 1;
@@ -19,6 +19,7 @@ class Game {
         this.updateGame = this.updateGame.bind(this);
         this.selectChoice = this.selectChoice.bind(this);
         this.nextRound = this.nextRound.bind(this);
+        this.timesUp = this.timesUp.bind(this);
     }
     
     // generate 10 instances of the Question class with a random question for each
@@ -120,12 +121,19 @@ class Game {
         return this.round >= 10;
     }
 
-    timesUp() {
-        const div = document.querySelector('.next_question');
-        const timesUp = document.createElement('h1');
-
-        timesUp.innerText = "Time's Up! Next Question";
-        div.appendChild(timesUp);
+    // take in the game object to keep context of this, whenever the user runs 
+    // out of time to answer a question call this function
+    timesUp(game) {
+        return () => {
+            game.removeChoiceListener();
+            const div = document.querySelector('.next_question');
+            const timesUp = document.createElement('h1');
+            
+            timesUp.innerText = "Time's Up! Next Question";
+            timesUp.classList.add('incorrect');
+            timesUp.addEventListener('click', game.nextRound);
+            div.appendChild(timesUp);
+        }
     }
 
     // change the font color of the correct answer to green and if applicable 
@@ -185,7 +193,7 @@ class Game {
         this.round += 1;
 
         // create new instances, render new question and choices, start the timer
-        this.timer = new Timer(10, this.updateGame);
+        this.timer = new Timer(10, this.timesUp);
         this.currentQuestion = this.questions[this.round];
         this.currentQuestion.render();
         this.addChoiceListener();

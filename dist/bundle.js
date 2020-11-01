@@ -124,7 +124,7 @@ var Game = /*#__PURE__*/function () {
     this.questionList = questionList;
     this.questions = [];
     this.generateQuestions();
-    this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.updateGame);
+    this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
     this.round = 0;
     this.score = 0;
     this.multiplier = 1;
@@ -134,6 +134,7 @@ var Game = /*#__PURE__*/function () {
     this.updateGame = this.updateGame.bind(this);
     this.selectChoice = this.selectChoice.bind(this);
     this.nextRound = this.nextRound.bind(this);
+    this.timesUp = this.timesUp.bind(this);
   } // generate 10 instances of the Question class with a random question for each
 
 
@@ -254,14 +255,21 @@ var Game = /*#__PURE__*/function () {
     key: "gameOver",
     value: function gameOver() {
       return this.round >= 10;
-    }
+    } // take in the game object to keep context of this, whenever the user runs 
+    // out of time to answer a question call this function
+
   }, {
     key: "timesUp",
-    value: function timesUp() {
-      var div = document.querySelector('.next_question');
-      var timesUp = document.createElement('h1');
-      timesUp.innerText = "Time's Up! Next Question";
-      div.appendChild(timesUp);
+    value: function timesUp(game) {
+      return function () {
+        game.removeChoiceListener();
+        var div = document.querySelector('.next_question');
+        var timesUp = document.createElement('h1');
+        timesUp.innerText = "Time's Up! Next Question";
+        timesUp.classList.add('incorrect');
+        timesUp.addEventListener('click', game.nextRound);
+        div.appendChild(timesUp);
+      };
     } // change the font color of the correct answer to green and if applicable 
     // change the color of the incorrect guess to red
 
@@ -324,7 +332,7 @@ var Game = /*#__PURE__*/function () {
       this.userGuess = '';
       this.round += 1; // create new instances, render new question and choices, start the timer
 
-      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.updateGame);
+      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp);
       this.currentQuestion = this.questions[this.round];
       this.currentQuestion.render();
       this.addChoiceListener();
