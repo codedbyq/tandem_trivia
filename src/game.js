@@ -3,15 +3,16 @@ import Timer from './timer';
 
 class Game {
     constructor(questionList) {
+        // initialize questions and create a random set of 10
         this.questionList = questionList;
         this.questions = [];
         this.generateQuestions();
         
+        // set game variables
         this.timer = new Timer(10, this.timesUp(this));
         this.round = 0;
         this.score = 0;
         this.multiplier = 1;
-        
         this.currentQuestion = this.questions[this.round];
         this.userGuess = '';
 
@@ -106,19 +107,24 @@ class Game {
         this.removeChoiceListener();
     }
     
-    // 
+    // each round check if the user's guess is correct and if the game is over
     updateGame() {
         const answer = this.currentQuestion.correct;
         const guess = this.userGuess.firstChild.innerText;
         const last = this.lastQuestion();
 
+        // update the score if the user is correct
         if (answer === guess) {
             const roundScore = (this.timer.time * 10) * this.multiplier;
             this.score += roundScore;
         }
 
+        // update the scores and render the correct answer
         this.renderStats();
         this.renderCorrectChoice();
+
+        // check if the game is over. If it is end the game, if not prompt user
+        // for the next question
         last ? this.renderFinalScore() : this.nextQuestionPrompt();
     }
 
@@ -213,6 +219,8 @@ class Game {
         this.timer.start();
     }
 
+    // hide the multiple choice boxes and render the final score with a button
+    // to play again
     renderFinalScore() {
         const choices = document.getElementById('multiple_choice');
         const question = document.getElementById('question');
@@ -242,6 +250,7 @@ class Game {
         this.clearNextQuestionPromt();
     }
 
+    // reset the game and render the first question
     playAgain() {
         this.reset();
         this.play();

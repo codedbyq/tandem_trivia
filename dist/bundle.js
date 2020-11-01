@@ -121,9 +121,11 @@ var Game = /*#__PURE__*/function () {
   function Game(questionList) {
     _classCallCheck(this, Game);
 
+    // initialize questions and create a random set of 10
     this.questionList = questionList;
     this.questions = [];
-    this.generateQuestions();
+    this.generateQuestions(); // set game variables
+
     this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
     this.round = 0;
     this.score = 0;
@@ -238,22 +240,25 @@ var Game = /*#__PURE__*/function () {
       this.timer.stop();
       this.updateGame();
       this.removeChoiceListener();
-    } // 
+    } // each round check if the user's guess is correct and if the game is over
 
   }, {
     key: "updateGame",
     value: function updateGame() {
       var answer = this.currentQuestion.correct;
       var guess = this.userGuess.firstChild.innerText;
-      var last = this.lastQuestion();
+      var last = this.lastQuestion(); // update the score if the user is correct
 
       if (answer === guess) {
         var roundScore = this.timer.time * 10 * this.multiplier;
         this.score += roundScore;
-      }
+      } // update the scores and render the correct answer
+
 
       this.renderStats();
-      this.renderCorrectChoice();
+      this.renderCorrectChoice(); // check if the game is over. If it is end the game, if not prompt user
+      // for the next question
+
       last ? this.renderFinalScore() : this.nextQuestionPrompt();
     } // return a boolean representing whether or not the current round is the 
     // 10th and final question
@@ -351,7 +356,9 @@ var Game = /*#__PURE__*/function () {
       this.currentQuestion.render();
       this.addChoiceListener();
       this.timer.start();
-    }
+    } // hide the multiple choice boxes and render the final score with a button
+    // to play again
+
   }, {
     key: "renderFinalScore",
     value: function renderFinalScore() {
@@ -379,7 +386,8 @@ var Game = /*#__PURE__*/function () {
       this.timer.remove();
       this.currentQuestion.clear();
       this.clearNextQuestionPromt();
-    }
+    } // reset the game and render the first question
+
   }, {
     key: "playAgain",
     value: function playAgain() {
