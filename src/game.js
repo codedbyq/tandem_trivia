@@ -45,9 +45,9 @@ class Game {
         return questions;
     };
 
+    // update the instance variable currentQuestion to match the current round
     setCurrentQuestion() {
         this.currentQuestion = this.questions[this.round];
-        this.currentAnswer = this.currentQuestion
     }
 
     // start the game and render the first question
@@ -65,6 +65,8 @@ class Game {
         choices.forEach(choice => choice.addEventListener('click', this.selectChoice))
     }
 
+    // remove the event listeners after user clicks one so they can't keep 
+    // selecting options
     removeChoiceListener() {
         const choices = document.querySelectorAll('.choice');
         choices.forEach(choice => choice.removeEventListener('click', this.selectChoice))
@@ -92,7 +94,7 @@ class Game {
         multiplier.innerHTML = `${this.multiplier}x`;
     }
 
-    // select choice
+    // register the user's selection to answer the question
     selectChoice(e) {
         e.preventDefault();
         this.userGuess = e.currentTarget;
@@ -161,7 +163,8 @@ class Game {
         }
     }
 
-
+    // give the user feedback on their answer to the question and add a button 
+    // to start the next round
     nextQuestionPrompt() {
         const div = document.querySelector('.next_question');
         const nextQuestion = document.createElement('h1');
@@ -169,7 +172,6 @@ class Game {
         if (this.userGuess.innerText === this.currentQuestion.correct) {
             nextQuestion.innerText = "That's correct! Next Question";
             nextQuestion.classList.add('correct');
-
         } else {
             nextQuestion.innerText = 'Incorrect... Next Question';
             nextQuestion.classList.add('incorrect');
@@ -179,6 +181,7 @@ class Game {
         div.appendChild(nextQuestion);
     }
 
+    // clear the next question prompt and user guess feedback for the next round
     clearNextQuestionPromt() {
         const div = document.querySelector('.next_question');
         div.innerHTML = '';
@@ -213,5 +216,3 @@ class Game {
 }
 
 export default Game;
-
-// define win when index is greater than 10

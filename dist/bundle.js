@@ -167,9 +167,9 @@ var Game = /*#__PURE__*/function () {
     }
   }, {
     key: "setCurrentQuestion",
+    // update the instance variable currentQuestion to match the current round
     value: function setCurrentQuestion() {
       this.currentQuestion = this.questions[this.round];
-      this.currentAnswer = this.currentQuestion;
     } // start the game and render the first question
 
   }, {
@@ -191,7 +191,9 @@ var Game = /*#__PURE__*/function () {
       choices.forEach(function (choice) {
         return choice.addEventListener('click', _this.selectChoice);
       });
-    }
+    } // remove the event listeners after user clicks one so they can't keep 
+    // selecting options
+
   }, {
     key: "removeChoiceListener",
     value: function removeChoiceListener() {
@@ -223,7 +225,7 @@ var Game = /*#__PURE__*/function () {
 
       var multiplier = document.getElementById('multiplier');
       multiplier.innerHTML = "".concat(this.multiplier, "x");
-    } // select choice
+    } // register the user's selection to answer the question
 
   }, {
     key: "selectChoice",
@@ -297,7 +299,9 @@ var Game = /*#__PURE__*/function () {
         answer.classList.add('correct');
         guess.classList.add('incorrect');
       }
-    }
+    } // give the user feedback on their answer to the question and add a button 
+    // to start the next round
+
   }, {
     key: "nextQuestionPrompt",
     value: function nextQuestionPrompt() {
@@ -314,7 +318,8 @@ var Game = /*#__PURE__*/function () {
 
       nextQuestion.addEventListener('click', this.nextRound);
       div.appendChild(nextQuestion);
-    }
+    } // clear the next question prompt and user guess feedback for the next round
+
   }, {
     key: "clearNextQuestionPromt",
     value: function clearNextQuestionPromt() {
@@ -354,7 +359,7 @@ var Game = /*#__PURE__*/function () {
   return Game;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Game); // define win when index is greater than 10
+/* harmony default export */ __webpack_exports__["default"] = (Game);
 
 /***/ }),
 
