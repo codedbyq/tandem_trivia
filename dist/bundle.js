@@ -492,7 +492,18 @@ var _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0___namespace = 
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ! Testing 
+  var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
+  var start = document.querySelector('.start'); // then the play button is clicked hide the intro div, then render 
+  // and start the game
+
+  start.addEventListener('click', function () {
+    var intro = document.getElementById('intro');
+    var choices = document.getElementById('multiple_choice');
+    choices.classList.remove('hidden');
+    intro.classList.add('hidden');
+    game.play();
+  }); // ! Testing 
+
   window.game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](_Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__);
   window.questionList = _Apprentice_TandemFor400_Data_json__WEBPACK_IMPORTED_MODULE_0__;
 });
