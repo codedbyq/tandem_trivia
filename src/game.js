@@ -217,25 +217,24 @@ class Game {
         
     }
 
-    restart() {
-        // get a new set of questions
+    // generate new questions and reset instance variables
+    reset() {
         this.generateQuestions();
+        this.timer = new Timer(10, this.timesUp(this));
+        this.round = 0;
+        this.score = 0;
+        this.multiplier = 1;
+        this.currentQuestion = this.questions[this.round];
+        this.userGuess = '';
 
-        // housekeeping - clear the board and reset instance variables
+        // housekeeping - clear the board 
         this.timer.remove();
         this.currentQuestion.clear();
         this.clearNextQuestionPromt();
-        this.userGuess = '';
-        this.round = 0;
-        this.multiplier = 1
+    }
 
-        // render new question and choices, start the timer
-        this.timer = new Timer(10, this.timesUp(this));
-        this.currentQuestion = this.questions[this.round];
-        this.currentQuestion.render();
-        this.addChoiceListener();
-        this.renderStats();
-        this.timer.start();
+    playAgain() {
+        
     }
 }
 

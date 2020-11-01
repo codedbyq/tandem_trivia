@@ -354,27 +354,26 @@ var Game = /*#__PURE__*/function () {
     }
   }, {
     key: "renderFinalScore",
-    value: function renderFinalScore() {}
+    value: function renderFinalScore() {} // generate new questions and reset instance variables
+
   }, {
-    key: "restart",
-    value: function restart() {
-      // get a new set of questions
-      this.generateQuestions(); // housekeeping - clear the board and reset instance variables
+    key: "reset",
+    value: function reset() {
+      this.generateQuestions();
+      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
+      this.round = 0;
+      this.score = 0;
+      this.multiplier = 1;
+      this.currentQuestion = this.questions[this.round];
+      this.userGuess = ''; // housekeeping - clear the board 
 
       this.timer.remove();
       this.currentQuestion.clear();
       this.clearNextQuestionPromt();
-      this.userGuess = '';
-      this.round = 0;
-      this.multiplier = 1; // render new question and choices, start the timer
-
-      this.timer = new _timer__WEBPACK_IMPORTED_MODULE_1__["default"](10, this.timesUp(this));
-      this.currentQuestion = this.questions[this.round];
-      this.currentQuestion.render();
-      this.addChoiceListener();
-      this.renderStats();
-      this.timer.start();
     }
+  }, {
+    key: "playAgain",
+    value: function playAgain() {}
   }]);
 
   return Game;
