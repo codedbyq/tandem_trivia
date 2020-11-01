@@ -326,6 +326,7 @@ var Game = /*#__PURE__*/function () {
     key: "nextRound",
     value: function nextRound() {
       // housekeeping - clear the board and increase round
+      this.timer.remove();
       this.currentQuestion.clear();
       this.clearNextQuestionPromt();
       this.userGuess = '';
@@ -554,7 +555,7 @@ var Timer = /*#__PURE__*/function () {
     key: "remove",
     value: function remove() {
       var timer = document.querySelector('.timer');
-      timer.remove();
+      timer.innerHTML = '10';
     }
   }]);
 

@@ -187,6 +187,7 @@ class Game {
     // clear the previous round and start a new one
     nextRound() {
         // housekeeping - clear the board and increase round
+        this.timer.remove();
         this.currentQuestion.clear();
         this.clearNextQuestionPromt();
         this.userGuess = '';

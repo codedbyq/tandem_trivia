@@ -37,7 +37,7 @@ class Timer {
     // stop the timer from rendering in the game
     remove() {
         const timer = document.querySelector('.timer');
-        timer.remove();
+        timer.innerHTML = '10';
     }
 }
 
